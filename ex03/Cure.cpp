@@ -1,52 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.cpp                                       :+:      :+:    :+:   */
+/*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/14 13:47:28 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/10/15 16:07:22 by ogorfti          ###   ########.fr       */
+/*   Created: 2023/10/15 10:47:37 by ogorfti           #+#    #+#             */
+/*   Updated: 2023/10/15 12:38:41 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AMateria.hpp"
+#include "Cure.hpp"
 
 /*-------------------- Orthodox --------------------*/
 
-AMateria::AMateria()
+Cure::Cure()
 {
-	std::cout << "AMateria Default constructor called" << std::endl;
+	this->type = "cure";
+	std::cout << "Cure Default constructor called" << std::endl;
 }
 
-AMateria& AMateria::operator=(AMateria &other)
+Cure& Cure::operator=(const Cure &other)
 {
 	if (this != &other)
 		this->type = other.type;
-	std::cout << "AMateria Copy assignment operator called" << std::endl;
+	std::cout << "Cure Copy assignment operator called" << std::endl;
 	return (*this);
 }
 
-AMateria::AMateria(AMateria &other)
+Cure::Cure(const Cure &other)
 {
 	*this = other;
-	std::cout << "AMateria Copy constructor called" << std::endl;
+	std::cout << "Cure Copy constructor called" << std::endl;
 }
 
-AMateria::~AMateria()
+Cure::~Cure()
 {
-	std::cout << "AMateria Destructor called" << std::endl;
+	std::cout << "Cure Destructor called" << std::endl;
 }
 
 /*-------------------- Member functions --------------------*/
 
-const std::string& AMateria::getType() const
+const std::string& Cure::getType() const
 {
 	return (this->type);
 }
 
-void AMateria::use(ICharacter& target)
+Cure* Cure::clone() const
 {
-	(void)target;
-	// target.getName();
+	return (new Cure(*this));
+}
+
+void Cure::use(ICharacter& target)
+{
+	std::cout << "* heals " << target.getName() << char(39) << "s wounds *"<< std::endl;
 }
