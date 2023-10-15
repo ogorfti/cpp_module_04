@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 10:47:37 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/10/15 12:38:41 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/10/15 18:24:51 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ const std::string& Cure::getType() const
 
 Cure* Cure::clone() const
 {
-	return (new Cure(*this));
+	return (new Cure);
 }
 
 void Cure::use(ICharacter& target)

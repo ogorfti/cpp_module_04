@@ -6,13 +6,13 @@
 #    By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:00:53 by ogorfti           #+#    #+#              #
-#    Updated: 2023/10/15 15:19:14 by ogorfti          ###   ########.fr        #
+#    Updated: 2023/10/15 20:37:17 by ogorfti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CXX = c++
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address -g
 
 SRCS = $(wildcard *.cpp)
 
@@ -24,7 +24,7 @@ OBJS = $(addprefix $(OBJS_PATH)/, $(SRCS:.cpp=.o))
 
 RM = rm -rf
 
-NAME = Aanimal
+NAME = AMateria
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 12:06:30 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/10/15 16:56:16 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/10/15 20:19:49 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,14 @@ Character::Character(Character &other)
 
 Character::~Character()
 {
+	t_list *tmp;
+
+	while (head)
+	{
+		tmp = head;
+		head = head->next;
+		delete tmp;
+	}
 	std::cout << "Character Destructor called" << std::endl;
 }
 
@@ -90,37 +98,29 @@ void	addBack(t_list **lst, t_list *newNode)
 
 void Character::equip(AMateria* m)
 {
-	// std::cout << "-------0\n";
 	int i;
 
 	i = 0;
 	while (this->inv[i])
 		i++;
-	// std::cout << "i : " << i << "\n";
 	if (i < 4)
 		inv[i] = m;
 	else
-	{
-		t_list *node = newNode(m);
-		addBack(&this->head, node);
-		// std::cout << "-------1.5\n";
-	}
-	// std::cout << "-------2\n";
+		delete m;
 }
 
 void Character::unequip(int idx)
 {
-	//check idx 0 3
-	t_list	*node = newNode(this->inv[idx]);
-	addBack(&this->head, node);
-	this->inv[idx] = NULL;
+	if (idx >= 0 && idx <= 3)
+	{
+		t_list	*node = newNode(this->inv[idx]);
+		addBack(&this->head, node);
+		this->inv[idx] = NULL;
+	}
 }
 
 void Character::use(int idx, ICharacter& target)
 {
-	(void) idx;
-	(void) target;
-	// AMateria::use(&target[idx]);
 	if (idx >= 0 && idx <= 3)
 		this->inv[idx]->use(target);
 }

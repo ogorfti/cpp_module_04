@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.hpp                                           :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/15 10:47:43 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/10/15 20:28:55 by ogorfti          ###   ########.fr       */
+/*   Created: 2023/10/15 18:05:02 by ogorfti           #+#    #+#             */
+/*   Updated: 2023/10/15 20:19:16 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "AMateria.hpp"
+#include "IMateriaSource.hpp"
+#include "Cure.hpp"
+#include "Ice.hpp"
 
-class Cure : public AMateria
+class MateriaSource : public IMateriaSource
 {
+	private:
+		AMateria* materias[4];
 	public:
-		Cure();
-		Cure(const Cure &other);
-		Cure& operator=(const Cure &other);
-		~Cure();
+		MateriaSource();
+		MateriaSource(MateriaSource &other);
+		MateriaSource& operator=(MateriaSource &other);
+		~MateriaSource();
 
-		std::string const & getType() const;
-		Cure* clone() const;
-		void use(ICharacter& target);
+		void learnMateria(AMateria* m);
+		AMateria* createMateria(std::string const & type);
 };

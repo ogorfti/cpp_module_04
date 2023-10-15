@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 10:47:37 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/10/15 16:15:27 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/10/15 18:29:28 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ const std::string& Ice::getType() const
 
 Ice* Ice::clone() const
 {
-	return (new Ice(*this));
+	return (new Ice);
 }
 
 void Ice::use(ICharacter& target)
