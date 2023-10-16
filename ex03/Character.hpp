@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 12:06:35 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/10/15 20:04:09 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/10/16 10:28:49 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,7 @@ class Character : public ICharacter
 		void unequip(int idx);
 		void use(int idx, ICharacter& target);
 };
+
+void	addBack(t_list **lst, t_list *newNode);
+t_list	*newNode(AMateria *addr);
+void	free_list(t_list *head);

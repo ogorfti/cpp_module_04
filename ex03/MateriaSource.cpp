@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 18:04:58 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/10/15 20:18:16 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/10/16 10:58:42 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ MateriaSource::MateriaSource()
 {
 	for (int i = 0; i < 4; i++)
 		this->materias[i] = NULL;
+	this->head = NULL;
 	std::cout << "MateriaSource Default constructor called" << std::endl;
 }
 
@@ -36,8 +37,9 @@ MateriaSource::MateriaSource(MateriaSource &other)
 
 MateriaSource::~MateriaSource()
 {
+	free_list(this->head);
 	for (int i = 0; i < 4; i++)
-		delete this->materias[i];
+			delete materias[i];
 	std::cout << "MateriaSource Destructor called" << std::endl;
 }
 
@@ -45,9 +47,11 @@ MateriaSource::~MateriaSource()
 
 void MateriaSource::learnMateria(AMateria* m)
 {
+	t_list *node = newNode(m);
+	addBack(&head, node);
 	for (int i = 0; i < 4; i++)
 	{
-		if (this->materias[i])
+		if (!this->materias[i])
 		{
 			this->materias[i] = m->clone();
 			break;
@@ -57,9 +61,10 @@ void MateriaSource::learnMateria(AMateria* m)
 
 AMateria* MateriaSource::createMateria(const std::string& type)
 {
-	if (!type.compare("ice"))
-		return (new Ice);
-	else if (!type.compare("cure"))
-		return (new Cure);
-	return (NULL);
+	for (int i = 0; i < 4; i++)
+	{
+		if (materias[i] && materias[i]->getType() == type)
+			return (materias[i]->clone());
+	}
+	return (0);
 }

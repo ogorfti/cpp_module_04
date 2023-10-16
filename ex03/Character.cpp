@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 12:06:30 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/10/15 20:19:49 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/10/16 10:55:12 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ Character::Character(Character &other)
 	std::cout << "Character Copy constructor called" << std::endl;
 }
 
-Character::~Character()
+void	free_list(t_list *head)
 {
 	t_list *tmp;
 
@@ -53,8 +53,16 @@ Character::~Character()
 	{
 		tmp = head;
 		head = head->next;
+		delete tmp->addr;
 		delete tmp;
 	}
+}
+
+Character::~Character()
+{
+	for(int i = 0; i < 4; i++)
+		delete this->inv[i];
+	free_list(this->head);
 	std::cout << "Character Destructor called" << std::endl;
 }
 
