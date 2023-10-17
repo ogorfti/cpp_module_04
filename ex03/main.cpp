@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 12:07:59 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/10/16 10:57:14 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/10/17 17:14:11 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "IMateriaSource.hpp"
 #include "MateriaSource.hpp"
 
-void func()
+void test1()
 {
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
@@ -31,13 +31,33 @@ void func()
 	delete bob;
 	delete me;
 	delete src;
-	
+}
+
+void	test2()
+{
+	Character a("a");
+	a.equip(new Cure());
+	a.equip(new Ice());
+	a.equip(new Cure());
+	a.equip(new Ice());
+
+	a.use(0, a);
+	a.use(1, a);
+	a.use(2, a);
+	a.use(3, a);
+
+	Character b("b");
+
+	b = a;
+
+	b.use(0, b);
+	b.use(1, b);
+	b.use(2, b);
+	b.use(3, b);
 }
 
 int main()
 {
-	// while (1);
-	func();
-	system("leaks -q AMateria");
-	return 0;
+	test1();
+	return (0);
 }

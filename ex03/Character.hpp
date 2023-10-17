@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 12:06:35 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/10/16 10:28:49 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/10/17 15:37:12 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 typedef struct s_list
 {
 	AMateria *addr;
-	struct s_list *next; 
+	struct s_list *next;
 }				t_list;
 
 class Character : public ICharacter
@@ -41,5 +41,6 @@ class Character : public ICharacter
 };
 
 void	addBack(t_list **lst, t_list *newNode);
+t_list	*copyList(t_list *head);
 t_list	*newNode(AMateria *addr);
 void	free_list(t_list *head);

@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 12:06:30 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/10/16 10:55:12 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/10/17 15:52:42 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,19 @@ Character::Character(std::string newname)
 
 Character& Character::operator=(Character &other)
 {
+	if (this != &other)
+	{
+		this->name = other.name;
+		this->head = copyList(other.head);
+		for (int i = 0; i < 4; i++)
+		{
+			if (other.inv[i])
+				this->inv[i] = other.inv[i]->clone();
+			else
+				this->inv[i] = NULL;
+		}
+	}
 	std::cout << "Character Copy assignment operator called" << std::endl;
-	/*...*/
-	(void)other;
 	return (*this);
 }
 
@@ -102,6 +112,20 @@ void	addBack(t_list **lst, t_list *newNode)
 		last = ft_lstlast(*lst);
 		last->next = newNode;
 	}		
+}
+
+t_list *copyList(t_list *head)
+{
+	t_list *copy;
+
+	copy = NULL;
+	while (head)
+	{
+		t_list *node = newNode(head->addr);
+		addBack(&copy, node);
+		head = head->next;
+	}
+	return (copy);
 }
 
 void Character::equip(AMateria* m)
