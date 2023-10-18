@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 18:04:58 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/10/17 15:50:59 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/10/18 10:37:19 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,20 @@ MateriaSource& MateriaSource::operator=(MateriaSource &other)
 {
 	if (this != &other)
 	{
+		free_list(this->head);
 		this->head = copyList(other.head);
 		for (int i = 0; i < 4; i++)
 		{
 			if (other.materias[i])
+			{
+				delete this->materias[i];	
 				this->materias[i] = other.materias[i]->clone();
+			}
 			else
+			{
+				delete this->materias[i];	
 				this->materias[i] = NULL;
+			}
 		}
 	}
 	std::cout << "MateriaSource Copy assignment operator called" << std::endl;
@@ -41,8 +48,15 @@ MateriaSource& MateriaSource::operator=(MateriaSource &other)
 
 MateriaSource::MateriaSource(MateriaSource &other)
 {
+	this->head = copyList(other.head);
+	for (int i = 0; i < 4; i++)
+	{
+		if (other.materias[i])
+			this->materias[i] = other.materias[i]->clone();
+		else
+			this->materias[i] = NULL;
+	}
 	std::cout << "MateriaSource Copy constructor called" << std::endl;
-	*this = other;
 }
 
 MateriaSource::~MateriaSource()

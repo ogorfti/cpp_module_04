@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 12:06:30 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/10/17 15:52:42 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/10/18 10:40:51 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 Character::Character()
 {
 	for (int i = 0; i < 4; i++)
-		this->inv[i] = nullptr;
+		this->inv[i] = NULL;
 	this->head = NULL;
 	std::cout << "Character Default constructor called" << std::endl;
 }
@@ -25,7 +25,7 @@ Character::Character()
 Character::Character(std::string newname)
 {
 	for (int i = 0; i < 4; i++)
-		this->inv[i] = nullptr;
+		this->inv[i] = NULL;
 	this->name = newname;
 	this->head = NULL;
 	std::cout << "Character Parameterize constructor called" << std::endl;
@@ -36,13 +36,20 @@ Character& Character::operator=(Character &other)
 	if (this != &other)
 	{
 		this->name = other.name;
+		free_list(this->head);
 		this->head = copyList(other.head);
 		for (int i = 0; i < 4; i++)
 		{
 			if (other.inv[i])
+			{
+				delete this->inv[i];	
 				this->inv[i] = other.inv[i]->clone();
+			}
 			else
+			{
+				delete this->inv[i];	
 				this->inv[i] = NULL;
+			}
 		}
 	}
 	std::cout << "Character Copy assignment operator called" << std::endl;
@@ -51,7 +58,15 @@ Character& Character::operator=(Character &other)
 
 Character::Character(Character &other)
 {
-	*this = other;
+	this->name = other.name;
+	this->head = copyList(other.head);
+	for (int i = 0; i < 4; i++)
+	{
+		if (other.inv[i])
+			this->inv[i] = other.inv[i]->clone();
+		else
+			this->inv[i] = NULL;
+	}
 	std::cout << "Character Copy constructor called" << std::endl;
 }
 

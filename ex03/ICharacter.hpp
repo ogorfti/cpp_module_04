@@ -6,14 +6,12 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 12:03:41 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/10/15 15:09:01 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/10/18 10:04:45 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-// #include "AMateria.hpp"
-//forward decalaration
 #include <iostream>
 class AMateria;
 

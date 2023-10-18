@@ -6,7 +6,7 @@
 /*   By: ogorfti <ogorfti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 11:42:26 by ogorfti           #+#    #+#             */
-/*   Updated: 2023/10/13 11:19:58 by ogorfti          ###   ########.fr       */
+/*   Updated: 2023/10/18 10:40:28 by ogorfti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ Cat::Cat(Cat &other)
 	if (other.brain)
 		this->brain = new Brain(*other.brain);
 	else
-		this->brain = nullptr;
+		this->brain = NULL;
 	std::cout << "Cat Copy constructor called" << std::endl;
 }
 
@@ -40,7 +40,7 @@ Cat& Cat::operator=(Cat &other)
 		if (other.brain)
 			this->brain = new Brain(*other.brain);
 		else
-			this->brain = nullptr;
+			this->brain = NULL;
 	}
 	std::cout << "Dog Copy assignment operator called" << std::endl;
 	return (*this);
